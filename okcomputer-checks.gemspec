@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency('okcomputer')
 
+  s.add_development_dependency('appraisal')
   s.add_development_dependency('coveralls')
   s.add_development_dependency('em-http-request')
   s.add_development_dependency('pusher')
