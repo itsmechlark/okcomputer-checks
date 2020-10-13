@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('appraisal')
   s.add_development_dependency('coveralls')
   s.add_development_dependency('em-http-request')
+  s.add_development_dependency('nexmo')
   s.add_development_dependency('pusher')
   s.add_development_dependency('rspec-rails', '~> 3.0')
   s.add_development_dependency('rubocop-performance')
