@@ -1,28 +1,36 @@
 language: ruby
 cache: bundler
-
+os:
+  - linux
 rvm:
   - 2.6.5
   - 2.7
   - ruby-head
-
 gemfile:
   - gemfiles/rails_edge.gemfile
   - gemfiles/rails_6.0_stable.gemfile
   - gemfiles/rails_5.2_stable.gemfile
   - gemfiles/rails_5.1_stable.gemfile
-
-sudo: false
-
-cache: bundler
-
-matrix:
+jobs:
   allow_failures:
     - rvm: ruby-head
     - gemfile: gemfiles/rails_edge.gemfile
-
+  include:
+    - stage: gem release
+      rvm: 2.6.5
+      gemfile: gemfiles/rails_5.2_stable.gemfile
+      deploy:
+        provider: rubygems
+        api_key:
+          secure: G2rsPouFvCz6A80EkCzjNWRYya10/Np5/Ha3MXb14o6T5fsqY7ii3AnAthPOSXlK6H/tcUd6I+aEcIIIo3uSzdaaR+VRwrHzhDn1Q5XVeJ8BxXAZPvEBTsrFEw0BKtao6mFghMY37z1Ubo6vm/phgUQC92AFRYVMpw7R8jUGq0g6xdWTdaeoG90NXgWQ11BGEljV08KEX92GzKO6vD1b034XU9OHQGp7gMchkKJGuIaLZzfT6ocJqbHJVBtc8dfR+H+kQ8NvwY50HozoA3hI/mqwwdy8qMMROoA7+oxUMaz9PwUEftnMtNtKXUqgnYO9WUz769MzacJk4rf7ZWRJt2gC+lJS0xbCSalbzEFaRH/RPLyqUNg/cybuaiikAHm2X0D1fKsdCV34AhlsoqWOO/myJ7WqnGqVfSRI/doOYdfYBswas8cgOEeMVgwz/rbANskTwptQMp1UTi3yjWa3h4n6kQnEluhsyOnw/KCcgejrtOWF1W0HzpvA7/rOuM20ifPBoRGSBoZXh9ggZ3PvHmMfwn2Qp7oRlBLk8VNflp2ViQnVJn2X3hLQpVrZIn4pD5gAUyVlsBkwxZj3bAMetzxh1dJic5Bs5o0pJ9hZtjuvLP63AatubXiviIy1/3y2lAPZZz9S/y+s7Jh4RmgnYiG281YMeCeWBDaq6WERBgk=
+        gem: okcomputer-checks
+        on:
+          repo: carabao-capital/okcomputer-checks
+          tags: true
+        skip_cleanup: 'true'
 before_install: "[ -f ${BUNDLE_GEMFILE}.lock ] && rm ${BUNDLE_GEMFILE}.lock || true"
-
-before_script: "bundle update"
-
-script: "bundle exec rspec"
+before_script: bundle update
+script:
+  - bundle exec rspec
+  - gem build okcomputer-checks.gemspec
+  - gem install okcomputer-checks-*.gem
