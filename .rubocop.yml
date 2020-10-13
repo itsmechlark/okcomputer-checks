@@ -17,6 +17,10 @@ Metrics/BlockLength:
     - spec/ok_computer/*
     - okcomputer-checks.gemspec
 
+Naming/FileName:
+  Exclude:
+    - lib/okcomputer-checks.rb
+
 ## TODOs
 
 Style/Documentation:
