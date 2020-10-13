@@ -16,4 +16,8 @@ Metrics/BlockLength:
   Exclude:
     - spec/ok_computer/*
     - okcomputer-checks.gemspec
-  
+
+## TODOs
+
+Style/Documentation:
+  Enabled: false
