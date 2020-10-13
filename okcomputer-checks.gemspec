@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency('okcomputer')
 
   s.add_development_dependency('appraisal')
-  s.add_development_dependency('coveralls')
+  s.add_development_dependency('codecov')
   s.add_development_dependency('em-http-request')
   s.add_development_dependency('nexmo')
   s.add_development_dependency('pusher')
@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rubocop-performance')
   s.add_development_dependency('rubocop-rails')
   s.add_development_dependency('rubocop-shopify')
+  s.add_development_dependency('simplecov')
   s.add_development_dependency('sqlite3', '~> 1.3.6')
   s.add_development_dependency('webmock')
 end

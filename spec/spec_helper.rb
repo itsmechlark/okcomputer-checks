@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
-require 'coveralls'
-Coveralls.wear!
+require 'simplecov'
+SimpleCov.start('rails') do
+  add_filter '/spec/'
+end
+if ENV['CI'] == 'true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
 
 require 'bundler/setup'
 require 'em-http' # As of webmock 1.4.0, em-http must be loaded first
