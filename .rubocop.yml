@@ -7,3 +7,13 @@ AllCops:
   Exclude:
     - gemfiles/*
     - spec/dummy/**/*
+
+Lint/MissingSuper:
+  Exclude:
+    - lib/ok_computer/checks/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/ok_computer/*
+    - okcomputer-checks.gemspec
+  
