@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.6.5'
 
+  s.add_dependency('faraday')
   s.add_dependency('okcomputer')
 
   s.add_development_dependency('appraisal')
