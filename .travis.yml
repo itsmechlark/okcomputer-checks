@@ -1,0 +1,29 @@
+language: ruby
+cache: bundler
+
+rvm:
+  - 2.6.5
+  - 2.7
+  - ruby-head
+
+gemfile:
+  - gemfiles/rails_edge.gemfile
+  - gemfiles/rails_6.0_stable.gemfile
+  - gemfiles/rails_5.2_stable.gemfile
+  - gemfiles/rails_5.1_stable.gemfile
+  - gemfiles/rails_5.0_stable.gemfile
+
+sudo: false
+
+cache: bundler
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - gemfile: gemfiles/rails_edge.gemfile
+
+before_install: "[ -f ${BUNDLE_GEMFILE}.lock ] && rm ${BUNDLE_GEMFILE}.lock || true"
+
+before_script: "bundle update"
+
+script: "bundle exec rspec"
