@@ -1,9 +1,15 @@
 *.swp
 tmp
-pkg
 .swo
 *~
+
 *.gem
-Gemfile.lock
 *.gemfile.lock
 .bundle
+Gemfile.lock
+pkg
+
+coverage
+**/log/*
+
+!.keep
