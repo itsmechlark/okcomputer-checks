@@ -6,7 +6,7 @@ require 'ok_computer/registry'
 module OkComputer
   # :nodoc:
   module Checks
-    class Registry < Registry
+    class Registry < ::OkComputer::Registry
       attr_accessor :collection
 
       delegate_missing_to :collection
