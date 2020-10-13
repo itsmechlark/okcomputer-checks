@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-appraise 'rails-5.0-stable' do
-  gem 'rails', github: 'rails/rails', branch: '5-0-stable'
-end
-
 appraise 'rails-5.1-stable' do
   gem 'rails', github: 'rails/rails', branch: '5-1-stable'
 end

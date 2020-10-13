@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/module/delegation'
+
 require 'ok_computer/check_collection'
 require 'ok_computer/registry'
 
