@@ -8,6 +8,8 @@ require 'em-http' # As of webmock 1.4.0, em-http must be loaded first
 require 'multi_json'
 require 'webmock/rspec'
 
+require 'ok_computer/checks'
+
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|

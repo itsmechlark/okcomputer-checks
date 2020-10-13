@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'ok_computer/checks/pusher_check'
 
 RSpec.describe(OkComputer::PusherCheck) do
   let(:client) do

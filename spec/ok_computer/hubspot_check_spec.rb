@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'ok_computer/checks/hubspot_check'
 
 RSpec.describe(OkComputer::HubspotCheck) do
   let(:api_key) { 'apikey' }
