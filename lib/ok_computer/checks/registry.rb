@@ -23,17 +23,27 @@ module OkComputer
         end
       end
 
-      def add(klass_or_check, check_name, *args)
-        check = if klass_or_check.is_a?(CheckCollection) || klass_or_check.is_a?(Check)
-          klass_or_check
-        else
-          build_check(klass_or_check, *args)
-        end
+      def add_collection(collection_name, &block)
+        checks = CheckCollection.new(collection_name)
+        Checks.register(checks, &block)
+        register(collection_name, checks)
+      end
 
-        collection.register(check_name, check)
+      def add_optional(klass_or_check, check_name, *args)
+        add(OptionalCheck.new(process_check(klass_or_check, *args)), check_name)
+      end
+
+      def add(klass_or_check, check_name, *args)
+        register(check_name, process_check(klass_or_check, *args))
       end
 
       private
+
+      def process_check(klass_or_check, *args)
+        return klass_or_check if [OptionalCheck, Check, CheckCollection].any? { |k| klass_or_check.is_a?(k) }
+
+        build_check(klass_or_check, *args)
+      end
 
       def build_check(klass, *args)
         unless klass.is_a?(Class)

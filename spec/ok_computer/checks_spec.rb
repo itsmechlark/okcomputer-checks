@@ -60,5 +60,33 @@ RSpec.describe(OkComputer::Checks) do
       it { expect(collection.fetch(:search)).to(be_present) }
       it { is_expected.to(be_success) }
     end
+
+    describe('#add_collection') do
+      subject(:search) { collection.fetch(:search) }
+
+      before do
+        described_class.register do |r|
+          r.add_collection(:search) do |s|
+            s.add(:algolia, :algolia, app_id: app_id, api_key: api_key)
+          end
+        end
+        collection.run
+      end
+
+      it { expect(search.fetch(:algolia)).to(be_present) }
+      it { is_expected.to(be_success) }
+    end
+
+    describe('#add_optional') do
+      before do
+        described_class.register do |r|
+          r.add_optional(:algolia, :search, app_id: app_id, api_key: api_key)
+        end
+        collection.run
+      end
+
+      it { expect(collection.fetch(:search)).to(be_present) }
+      it { is_expected.to(be_success) }
+    end
   end
 end
