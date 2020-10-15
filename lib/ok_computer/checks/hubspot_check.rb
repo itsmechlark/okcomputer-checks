@@ -31,7 +31,7 @@ module OkComputer
     def perform_request
       response = Faraday.get(url, request: { timeout: request_timeout }) do |req|
         req.headers['Content-Type'] = 'application/json'
-        req.body = { hapikey: api_key }.to_json
+        req.params['hapikey'] = api_key
       end
 
       [response.status, MultiJson.decode(response.body)]
