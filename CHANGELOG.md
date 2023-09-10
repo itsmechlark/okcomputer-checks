@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/itsmechlark/okcomputer-checks/compare/v1.2.0...v1.3.0) (2023-09-10)
+
+
+### Features
+
+* **deps:** Bump codecov, activesupport, simplecov and rails ([4c5d07f](https://github.com/itsmechlark/okcomputer-checks/commit/4c5d07f8dde1ea7317424ff1f61908bda4a2b2bb))
+
 ## 1.2.0 (2023-09-10)
 
 
