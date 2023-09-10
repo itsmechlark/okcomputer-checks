@@ -1,27 +1,33 @@
+require:
+  - code_scanning
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rails
+  - rubocop-rspec
+
 inherit_gem:
   rubocop-shopify: rubocop.yml
 
 AllCops:
-  DisabledByDefault: false
-  TargetRubyVersion: 2.6
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.7
+  NewCops: enable
   Exclude:
+    - Gemfile*
     - gemfiles/*
-    - spec/dummy/**/*
-
-Lint/MissingSuper:
-  Exclude:
-    - lib/ok_computer/checks/*
+    - spec/fixtures/rails_app/**/*
+    - vendor/bundle/**/*
 
 Metrics/BlockLength:
   Exclude:
-    - spec/ok_computer/*
-    - okcomputer-checks.gemspec
+    - "spec/**/*.rb"
 
-Naming/FileName:
-  Exclude:
-    - lib/okcomputer-checks.rb
+Rails:
+  Enabled: true
 
-## TODOs
+Rails/I18nLocaleTexts:
+  Enabled: false
 
-Style/Documentation:
+RSpec/VerifiedDoubleReference:
   Enabled: false

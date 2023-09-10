@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'ok_computer/built_in_checks/http_check'
+require "faraday"
+require "ok_computer/built_in_checks/http_check"
 
 module OkComputer
   class HubspotCheck < HttpCheck
     StatusFailed = Class.new(StandardError)
 
-    STATUS_URL = 'https://api.hubapi.com/integrations/v1/limit/daily'
+    STATUS_URL = "https://api.hubapi.com/integrations/v1/limit/daily"
 
     attr_accessor :api_key
 
@@ -22,7 +22,7 @@ module OkComputer
       status, body = perform_request
       raise(StatusFailed, body) unless status == 200
 
-      mark_message('Rate-Limit check successful')
+      mark_message("Rate-Limit check successful")
     rescue StandardError => e
       mark_message("Error: '#{e}'")
       mark_failure
@@ -30,8 +30,8 @@ module OkComputer
 
     def perform_request
       response = Faraday.get(url, request: { timeout: request_timeout }) do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.params['hapikey'] = api_key
+        req.headers["Content-Type"] = "application/json"
+        req.params["hapikey"] = api_key
       end
 
       [response.status, MultiJson.decode(response.body)]

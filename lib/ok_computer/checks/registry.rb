@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/module/delegation'
+require "active_support/core_ext/module/delegation"
 
-require 'ok_computer/check_collection'
-require 'ok_computer/registry'
+require "ok_computer/check_collection"
+require "ok_computer/registry"
 
 module OkComputer
   # :nodoc:
@@ -13,7 +13,7 @@ module OkComputer
 
       delegate_missing_to :collection
 
-      def initialize(collection = nil)
+      def initialize(collection = nil) # rubocop:disable Lint/MissingSuper
         self.collection = if collection.is_a?(CheckCollection)
           collection
         elsif collection
@@ -29,23 +29,23 @@ module OkComputer
         register(collection_name, checks)
       end
 
-      def add_optional(klass_or_check, check_name, *args)
-        add(OptionalCheck.new(process_check(klass_or_check, *args)), check_name)
+      def add_optional(klass_or_check, check_name, **args)
+        add(OptionalCheck.new(process_check(klass_or_check, **args)), check_name)
       end
 
-      def add(klass_or_check, check_name, *args)
-        register(check_name, process_check(klass_or_check, *args))
+      def add(klass_or_check, check_name, **args)
+        register(check_name, process_check(klass_or_check, **args))
       end
 
       private
 
-      def process_check(klass_or_check, *args)
+      def process_check(klass_or_check, **args)
         return klass_or_check if [OptionalCheck, Check, CheckCollection].any? { |k| klass_or_check.is_a?(k) }
 
-        build_check(klass_or_check, *args)
+        build_check(klass_or_check, **args)
       end
 
-      def build_check(klass, *args)
+      def build_check(klass, **args)
         unless klass.is_a?(Class)
           begin
             klass = OkComputer.const_get("#{klass}_check".camelize)
@@ -53,7 +53,7 @@ module OkComputer
             raise LoadError, "Could not register #{klass.inspect}."
           end
         end
-        klass.new(*args)
+        klass.new(**args)
       end
     end
   end

@@ -1,23 +1,37 @@
 # frozen_string_literal: true
 
-require 'simplecov'
-SimpleCov.start('rails') do
-  add_filter '/spec/'
-end
-if ENV['CI'] == 'true'
-  require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+require "simplecov"
+
+if ENV["CI"]
+  require "simplecov-lcov"
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+  SimpleCov::Formatter::LcovFormatter.config.report_with_single_file = true
 end
 
-require 'bundler/setup'
-require 'em-http' # As of webmock 1.4.0, em-http must be loaded first
-require 'multi_json'
-require 'webmock/rspec'
+SimpleCov.start("rails") do
+  add_filter "/spec/"
+  minimum_coverage 95
+  minimum_coverage_by_file 90
+end
+
+require "bundler/setup"
+require "dotenv/load"
+
+ENV["RAILS_ENV"] = "test"
+
+require File.expand_path(
+  "fixtures/rails_app/config/environment", __dir__
+)
+
+require "em-http" # As of webmock 1.4.0, em-http must be loaded first
+require "multi_json"
+require "webmock/rspec"
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
+  # config.use_transactional_fixtures = true
   config.filter_run(:focus)
 
   config.expect_with(:rspec) do |expectations|
@@ -30,7 +44,7 @@ RSpec.configure do |config|
 
   config.order = :random
 
-  config.before(:each) do
+  config.before do
     WebMock.reset!
     WebMock.disable_net_connect!
   end

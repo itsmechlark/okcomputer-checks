@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'ok_computer/built_in_checks/http_check'
+require "faraday"
+require "ok_computer/built_in_checks/http_check"
 
 module OkComputer
   class AlgoliaCheck < HttpCheck
     StatusFailed = Class.new(StandardError)
 
-    STATUS_URL = 'https://status.algolia.com/1/status'
+    STATUS_URL = "https://status.algolia.com/1/status"
 
     attr_accessor :app_id, :api_key
 
@@ -21,9 +21,9 @@ module OkComputer
     # Public: Return the status of the Monitoring check
     def check
       status, body = perform_request
-      raise(StatusFailed, body) unless status == 200 && body['status'].values.all? { |v| v == 'operational' }
+      raise(StatusFailed, body) unless status == 200 && body["status"].values.all? { |v| v == "operational" }
 
-      mark_message('Monitoring check successful')
+      mark_message("Monitoring check successful")
     rescue StandardError => e
       mark_message("Error: '#{e}'")
       mark_failure
@@ -31,9 +31,9 @@ module OkComputer
 
     def perform_request
       response = Faraday.get(url, request: { timeout: request_timeout }) do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.headers['X-Algolia-API-Key'] = api_key
-        req.headers['X-Algolia-Application-Id'] = app_id
+        req.headers["Content-Type"] = "application/json"
+        req.headers["X-Algolia-API-Key"] = api_key
+        req.headers["X-Algolia-Application-Id"] = app_id
       end
 
       [response.status, MultiJson.decode(response.body)]

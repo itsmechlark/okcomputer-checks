@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'nexmo'
+require "nexmo"
 
 module OkComputer
   class NexmoCheck < Check
@@ -12,7 +12,7 @@ module OkComputer
       client ||= Nexmo::Client.new(
         api_key: api_key,
         api_secret: api_secret,
-        signature_secret: signature_secret
+        signature_secret: signature_secret,
       )
 
       self.client = client

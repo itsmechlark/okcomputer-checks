@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'pusher'
+require "pusher"
 
 module OkComputer
   class PusherCheck < Check
@@ -14,7 +14,7 @@ module OkComputer
         key: app_key,
         secret: app_secret,
         cluster: app_cluster,
-        use_tls: true
+        use_tls: true,
       )
 
       self.client = client
@@ -23,14 +23,14 @@ module OkComputer
     # Public: Return the status of the Channels check
     def check
       perform_request
-      mark_message('Channels check successful')
+      mark_message("Channels check successful")
     rescue StandardError => e
       mark_message("Error: '#{e}'")
       mark_failure
     end
 
     def perform_request
-      client.get('/channels')
+      client.get("/channels")
     rescue StandardError => e
       raise(ChannelError, e)
     end

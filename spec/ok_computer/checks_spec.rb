@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "spec_helper"
 
 RSpec.describe(OkComputer::Checks) do
+  subject(:collection) { described_class.register }
+
   let(:response) do
     {
       status: 200,
-      body: MultiJson.encode(status: { 'c4-fr' => 'operational' }),
+      body: MultiJson.encode(status: { "c4-fr" => "operational" }),
     }
   end
 
-  subject(:collection) { described_class.register }
-
   before { stub_request(:get, %r{/1/status}).to_return(response) }
 
-  describe('.register') do
-    let(:app_id) { 'APPID' }
-    let(:api_key) { 'apikey' }
+  describe(".register") do
+    let(:app_id) { "APPID" }
+    let(:api_key) { "apikey" }
 
-    context('when klass') do
+    context("when klass") do
       before do
         described_class.register do |r|
           r.add(:algolia, :search, app_id: app_id, api_key: api_key)
@@ -30,7 +30,7 @@ RSpec.describe(OkComputer::Checks) do
       it { is_expected.to(be_success) }
     end
 
-    context('when check') do
+    context("when check") do
       let(:check) { OkComputer::AlgoliaCheck.new(app_id: app_id, api_key: api_key) }
 
       before do
@@ -44,7 +44,7 @@ RSpec.describe(OkComputer::Checks) do
       it { is_expected.to(be_success) }
     end
 
-    context('when check collection') do
+    context("when check collection") do
       let(:check) { OkComputer::AlgoliaCheck.new(app_id: app_id, api_key: api_key) }
       let(:check_collection) { OkComputer::CheckCollection.new(:custom) }
 
@@ -61,7 +61,7 @@ RSpec.describe(OkComputer::Checks) do
       it { is_expected.to(be_success) }
     end
 
-    describe('#add_collection') do
+    describe("#add_collection") do
       subject(:search) { collection.fetch(:search) }
 
       before do
@@ -77,7 +77,7 @@ RSpec.describe(OkComputer::Checks) do
       it { is_expected.to(be_success) }
     end
 
-    describe('#add_optional') do
+    describe("#add_optional") do
       before do
         described_class.register do |r|
           r.add_optional(:algolia, :search, app_id: app_id, api_key: api_key)

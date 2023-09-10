@@ -3,7 +3,9 @@
 source "https://rubygems.org"
 
 gem "rails", github: "rails/rails", branch: "6-0-stable"
-gem "sprockets", "~> 3.0"
-gem "sqlite3", "~> 1.4"
+
+platforms :ruby do
+  gem "sqlite3", "~> 1.4"
+end
 
 gemspec path: "../"
