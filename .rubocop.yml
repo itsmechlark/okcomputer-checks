@@ -23,11 +23,20 @@ Metrics/BlockLength:
   Exclude:
     - "spec/**/*.rb"
 
+Naming/FileName:
+  Exclude:
+    - "lib/okcomputer-checks.rb"
+
 Rails:
   Enabled: true
 
 Rails/I18nLocaleTexts:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Exclude:
+    - "spec/ok_computer/nexmo_check_spec.rb"
+
 
 RSpec/VerifiedDoubleReference:
   Enabled: false

@@ -8,7 +8,7 @@ module OkComputer
 
     attr_accessor :client
 
-    def initialize(client: nil, app_id: nil, app_key: nil, app_secret: nil, app_cluster: nil)
+    def initialize(client: nil, app_id: nil, app_key: nil, app_secret: nil, app_cluster: nil) # rubocop:disable Lint/MissingSuper
       client ||= Pusher::Client.new(
         app_id: app_id,
         key: app_key,

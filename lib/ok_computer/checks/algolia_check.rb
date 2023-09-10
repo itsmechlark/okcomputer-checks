@@ -21,7 +21,7 @@ module OkComputer
     # Public: Return the status of the Monitoring check
     def check
       status, body = perform_request
-      raise(StatusFailed, body) unless status == 200 && body["status"].values.all? { |v| v == "operational" }
+      raise(StatusFailed, body) unless status == 200 && body["status"].values.all?("operational")
 
       mark_message("Monitoring check successful")
     rescue StandardError => e

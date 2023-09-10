@@ -8,7 +8,7 @@ module OkComputer
 
     attr_accessor :client
 
-    def initialize(client: nil, api_key: nil, api_secret: nil, signature_secret: nil)
+    def initialize(client: nil, api_key: nil, api_secret: nil, signature_secret: nil) # rubocop:disable Lint/MissingSuper
       client ||= Nexmo::Client.new(
         api_key: api_key,
         api_secret: api_secret,
