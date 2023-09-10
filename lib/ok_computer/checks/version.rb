@@ -2,7 +2,7 @@
 
 module OkComputer
   module Checks
-    VERSION = "1.1.1"
+    VERSION = "1.2.0"
 
     class << self
       def gem_version
