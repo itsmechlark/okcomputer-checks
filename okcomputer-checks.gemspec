@@ -1,31 +1,33 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.push(File.expand_path("lib", __dir__))
-
-# Maintain your gem's version:
-require "ok_computer/checks/version"
+require_relative "lib/ok_computer/checks/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "okcomputer-checks"
-  s.version     = OkComputer::Checks::VERSION
-  s.author      = "First Circle Engineering"
-  s.email       = "tech@firstcircle.com"
+  s.version     = OkComputer::Checks.gem_version
+
+  s.authors = ["John Chlark Sumatra"]
+  s.email   = ["clark@sumatra.com.ph"]
+
   s.license     = "MIT"
-  s.homepage    = "https://github.com/carabao-capital/okcomputer-checks"
+  s.homepage    = "https://github.com/itsmechlark/okcomputer-checks"
   s.summary     = "Collection health-check for okcomputer"
   s.description = %(
     Collection health-check for okcomputer
   )
 
-  s.files               = %x(git ls-files).split("\n") - [".gitignore", ".travis.yml", ".ruby-version"]
+  s.metadata = {
+    "homepage_uri" => s.homepage,
+    "changelog_uri" => "https://github.com/itsmechlark/okcomputer-checks/releases/tag/v#{s.version}",
+    "source_code_uri" => "https://github.com/itsmechlark/okcomputer-checks/tree/v#{s.version}",
+    "bug_tracker_uri" => "https://github.com/itsmechlark/okcomputer-checks/issues",
+    "github_repo" => "https://github.com/itsmechlark/okcomputer-checks",
+  }
+
+  s.files = Dir["lib/**/*", "CHANGELOG.md", "LICENSE.md"]
   s.require_paths       = ["lib"]
   s.extra_rdoc_files    = ["LICENSE", "README.md"]
-
-  s.metadata = {
-    "source_code_uri" => "https://github.com/carabao-capital/okcomputer-checks/tree/v#{s.version}",
-    "allowed_push_host" => "https://rubygems.org",
-  }
 
   s.required_ruby_version = ">= 2.7.0"
 
