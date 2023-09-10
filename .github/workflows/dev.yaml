@@ -51,6 +51,8 @@ jobs:
 
   rubocop:
     runs-on: ubuntu-latest
+    env:
+      BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
     steps:
     - uses: actions/checkout@v4
 

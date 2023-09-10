@@ -41,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+    env:
+      BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
   
     steps:
     - name: Checkout repository

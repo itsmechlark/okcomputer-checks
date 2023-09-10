@@ -11,6 +11,8 @@ permissions:
 jobs:
   publish-github:
     runs-on: ubuntu-latest
+    env:
+      BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
     steps:
     - uses: actions/checkout@v4
 
@@ -42,6 +44,8 @@ jobs:
 
   publish-rubygems:
     runs-on: ubuntu-latest
+    env:
+      BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
     steps:
     - uses: actions/checkout@v4
 
