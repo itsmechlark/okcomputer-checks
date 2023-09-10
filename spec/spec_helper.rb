@@ -9,6 +9,7 @@ if ENV["CI"]
 end
 
 SimpleCov.start("rails") do
+  add_filter "/lib/ok_computer/checks/version.rb"
   add_filter "/spec/"
   minimum_coverage 89
   minimum_coverage_by_file 89
