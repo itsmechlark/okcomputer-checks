@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 90b0266e9bfaaadbd2d249ad2eeec042077a0063
+  revision: 6b6311f6fe0d64f64b580980a1c4de639c62b05a
   branch: 6-1-stable
   specs:
     actioncable (6.1.7.6)
@@ -56,6 +56,12 @@ GIT
       activesupport (= 6.1.7.6)
       marcel (~> 1.0)
       mini_mime (>= 1.1.0)
+    activesupport (6.1.7.6)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
     rails (6.1.7.6)
       actioncable (= 6.1.7.6)
       actionmailbox (= 6.1.7.6)
@@ -89,12 +95,6 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.7.6)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 1.6, < 2)
-      minitest (>= 5.1)
-      tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     appraisal (2.5.0)
@@ -141,7 +141,7 @@ GEM
     json (2.6.3)
     jwt (2.7.1)
     language_server-protocol (3.17.0.3)
-    loofah (2.21.3)
+    loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
@@ -152,17 +152,17 @@ GEM
     marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.4)
+    mini_portile2 (2.8.5)
     minitest (5.20.0)
     multi_json (1.15.0)
-    net-imap (0.3.7)
+    net-imap (0.4.4)
       date
       net-protocol
     net-pop (0.1.2)
       net-protocol
     net-protocol (0.2.1)
       timeout
-    net-smtp (0.3.3)
+    net-smtp (0.4.0)
       net-protocol
     nexmo (7.2.1)
       nexmo-jwt (~> 0.1.1)
@@ -187,7 +187,7 @@ GEM
       multi_json (~> 1.15)
       pusher-signature (~> 0.1.8)
     pusher-signature (0.1.8)
-    racc (1.7.1)
+    racc (1.7.3)
     rack (2.2.8)
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -272,7 +272,7 @@ GEM
     sqlite3 (1.6.5)
       mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.5-aarch64-linux)
-    thor (1.2.2)
+    thor (1.3.0)
     timeout (0.4.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -284,7 +284,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.11)
+    zeitwerk (2.6.12)
 
 PLATFORMS
   aarch64-linux
